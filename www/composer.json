@@ -1,0 +1,7 @@
+{
+    "require": {
+        "gabordemooij/redbean": "^5.7",
+        "larapack/dd": "^1.1",
+        "vlucas/phpdotenv": "^5.3"
+    }
+}

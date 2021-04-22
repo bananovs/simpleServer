@@ -1,0 +1,57 @@
+version: '3'
+services:
+
+  #PHP Service
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php7.4:fpm
+    depends_on:
+        - nginx
+    container_name: analytics-php
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+        - ./www:/var/www
+    networks:
+      - server-analytics
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: analytics-nginx
+    restart: unless-stopped
+    tty: true
+    # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
+    volumes:
+        - ./docker/nginx:/etc/nginx/conf.d
+        - ./www:/var/www
+        - ./docker/logs:/var/log/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - server-analytics
+
+#   #MySQL Service
+#   db:
+#     image: mysql:5.7.22
+#     container_name: analytics-mysql
+#     restart: unless-stopped
+#     tty: true
+#     ports:
+#       - "3306:3306"
+#     environment:
+#       MYSQL_DATABASE: laravel
+#       MYSQL_ROOT_PASSWORD: your_mysql_root_password
+#       SERVICE_TAGS: dev
+#       SERVICE_NAME: mysql
+#     networks:
+#       - server-analytics
+
+#Docker Networks
+networks:
+  server-analytics:
+    driver: bridge
