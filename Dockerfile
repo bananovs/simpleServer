@@ -29,7 +29,7 @@ COPY --chown=www:www . /var/www
 
 RUN composer install --prefer-dist --no-interaction
 
-COPY ./.env.example ./.env
+RUN cp .env.example .env
 
 USER www
 
