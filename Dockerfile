@@ -29,12 +29,15 @@ COPY --chown=www:www . /var/www
 
 RUN composer install --prefer-dist --no-interaction
 
-RUN cp .env.example .env
+COPY .env.example .env
 
 USER www
 
 EXPOSE 9000
 
-ENTRYPOINT ["sh", "./start.sh"]
+RUN  chmod 777 -R  db
 
 USER root
+
+ENTRYPOINT ["sh", "./start.sh"]
+

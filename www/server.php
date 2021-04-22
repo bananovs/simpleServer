@@ -14,7 +14,7 @@ class Server extends \RedBeanPHP\SimpleModel
     public function __construct($token)
     {
         $this->token = $token;
-        R::setup('sqlite:bots.db');
+        R::setup('./db/sqlite:bots.db');
         if ( !R::testConnection() )
         {
                 exit ('Нет соединения с базой данных');
