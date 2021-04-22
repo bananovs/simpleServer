@@ -37,6 +37,15 @@ services:
     networks:
       - server-analytics
 
+  metabase-app:
+      image: metabase/metabase
+      restart: always
+      ports:
+        - 3001:3000
+      # volumes:
+      #   - ./www:/var/www
+      networks:
+        - server-analytics
 #   #MySQL Service
 #   db:
 #     image: mysql:5.7.22
