@@ -39,6 +39,7 @@ services:
 
   metabase-app:
       image: metabase/metabase
+      container_name: analytics-metabase
       restart: always
       ports:
         - 3001:3000
