@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: php7.4:fpm
-    depends_on:
-        - nginx
+    # depends_on:
+    #     - nginx
     container_name: analytics-php
     restart: unless-stopped
     tty: true
@@ -24,14 +24,16 @@ services:
     container_name: analytics-nginx
     restart: unless-stopped
     tty: true
+    depends_on:
+      - php
     # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
     volumes:
         - ./docker/nginx:/etc/nginx/conf.d
         - ./www:/var/www
         - ./docker/logs:/var/log/nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - "8001:80"
+      # - "443:443"
     networks:
       - server-analytics
 
