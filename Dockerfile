@@ -37,7 +37,7 @@ USER www
 
 EXPOSE 9000
 
-RUN  chmod 777 -R  db
+# RUN  chmod 777 -R  db
 
 USER root
 
