@@ -6,6 +6,9 @@ require 'vendor/autoload.php';
 use Bananovs\Server;
 use Dotenv\Dotenv;
 
+if (function_exists('date_default_timezone_set'))
+date_default_timezone_set('Europe/Moscow');
+
 // Регистрируем хранилище, получаем programId и secret
 
 if (!getenv('ACCESS_TOKEN')) {
