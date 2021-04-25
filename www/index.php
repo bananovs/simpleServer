@@ -26,8 +26,8 @@ if($data['access_token'] != $token) die('Invalid token');
 
 if($data['truncate'] == true) {
 
-    $data = new Server($data['access_token']);
-    $resp = $data->truncate($data['p']);
+    $server = new Server($data['access_token']);
+    $resp = $server->truncate($data['p']);
     echo json_encode($resp);die;
     
 }

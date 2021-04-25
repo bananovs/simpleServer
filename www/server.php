@@ -50,7 +50,6 @@ class Server extends \RedBeanPHP\SimpleModel
 
     public function truncate($programId)
     {
-        
         R::exec('SET FOREIGN_KEY_CHECKS = 0;');
         R::wipe($programId);
 
