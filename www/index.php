@@ -24,6 +24,14 @@ $data = $_GET;
 
 if($data['access_token'] != $token) die('Invalid token');
 
+if($data['truncate'] == true) {
+
+    $data = new Server($data['access_token']);
+    $resp = $data->truncate($data['p']);
+    echo json_encode($resp);die;
+    
+}
+
 if($data['register'] == 1) {
 
     $data = new Server($data['access_token']);

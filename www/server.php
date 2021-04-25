@@ -48,6 +48,15 @@ class Server extends \RedBeanPHP\SimpleModel
         return json_encode(['success' => 'ok', 'id' => $id]);
     }
 
+    public function truncate($programId)
+    {
+        
+        R::exec('SET FOREIGN_KEY_CHECKS = 0;');
+        R::wipe($programId);
+
+        return json_encode(['success' => 'ok']);
+    }
+
 
     public function createDatabase($register)
     {
