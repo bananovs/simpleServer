@@ -35,12 +35,17 @@ class Server extends \RedBeanPHP\SimpleModel
         return $register;
     }
 
-    public function storeData($programId, $value)
+    public function storeData(?string $programId, ?string $data)
     {
-        
         $db = R::dispense( $programId );
+        $data = json_decode($data, true);
+
+        foreach ($data as $key => $value) {
+            if($key === 'access_token') continue;
+            if($key === 's') continue;
+            $db->$key =  $value;
+        }
         
-        $db->value =  $value;
         $db->created_at =  time();
         
         $id = R::store( $db );
